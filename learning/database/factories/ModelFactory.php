@@ -26,7 +26,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Contact::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name(),
-        'from' => $faker->unique()->safeEmail,
+        'email' => $faker->unique()->safeEmail,
         'message' => $faker->text()
     ];
 });
