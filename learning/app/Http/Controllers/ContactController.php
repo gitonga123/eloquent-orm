@@ -15,8 +15,8 @@ class ContactController extends Controller
     public function index()
     {
         $allContacts = Contact::get();
-
         return $allContacts;
+
     }
 
     /**
@@ -37,7 +37,13 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $contact = new Contact([
+            'email' => 'daniel@mutwiri.com',
+            'name' => 'Daniel Mutwiri',
+            'message' => "Est qui quia nulla voluptatem minus debitis. Et cum et omnis architecto. Et unde quis adipisci beatae qui blanditiis alias deleniti."
+        ]);
+
+        $contact->save();
     }
 
     /**
@@ -74,7 +80,9 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $contact = Contact::find($id);
+        $contact->email = "natalie@partkfamily.com";
+        $contact->save();
     }
 
     /**
