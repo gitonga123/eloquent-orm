@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -13,6 +14,18 @@ class Contact extends Model
     protected $fillable = ['name', 'email', 'message'];
     protected $guarded = ['id', 'created_at', 'update_at'];
     protected $dates = ['deleted_at'];
+
+    //a local scope that retrieves only recent email
+    public function scopeRecentEmails($query)
+    {
+        return $query->where('created_at', '>', Carbon::now()->subDay());
+    }
+
+    // a local scope that accepts a parameter
+    public function scopeStatus($query, $email)
+    {
+        return $query->where('email', $email);
+    }
 
     //change your primary key
     //protected $primaryKey = 'contact_id';
@@ -26,6 +39,5 @@ class Contact extends Model
 //
 //        return $allContacts;
 //    }
-
 
 }

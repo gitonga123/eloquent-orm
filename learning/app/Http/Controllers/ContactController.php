@@ -15,8 +15,13 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $allContacts = Contact::get();
-        return $allContacts;
+//        $allContacts = Contact::get();
+//        return $allContacts;
+
+        $recentEmails = Contact::RecentEmails()->get();
+        echo "<pre>";
+        var_dump($recentEmails);
+        echo "</pre>";
 
     }
 
