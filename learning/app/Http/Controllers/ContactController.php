@@ -115,4 +115,11 @@ class ContactController extends Controller
 
         dd($contact);
     }
+
+    public function softDeletes()
+    {
+        $allHistoricContacts = Contact::withTrashed()->get();
+
+        dd($allHistoricContacts);
+    }
 }

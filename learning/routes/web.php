@@ -107,3 +107,5 @@ Route::resource('contact', 'ContactController');
 
 Route::get('/firstorcreate', 'ContactController@listing');
 
+Route::get('/soft-deleted', 'ContactController@softDeletes');
+
