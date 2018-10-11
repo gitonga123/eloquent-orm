@@ -17,9 +17,9 @@ Route::get('/', function () {
 
 //using the fluent builder.
 Route::get('/contact-list', function () {
-    $contact = DB::table('contacts')->get();
+    $contact = DB::table('contacts')->select('email', 'name as Name')->get();
     echo "<pre>";
-    var_dump($contact);
+    print_r($contact);
     echo "</pre>";
 });
 
@@ -36,8 +36,45 @@ Route::get('/contact_list/{id}', function ($id) {
         ['id' => $id]
     );
 
+    $newContacts = DB::table('contacts')
+        ->where('created_at', '>', \Carbon\Carbon::now()->subDay())
+        ->get();
+
+    $contacts = DB::table('contacts')
+        ->where('id', '>', 55)
+        ->orWhere(function ($query) {
+           $query->where('created_at', '>', \Carbon\Carbon::now()->subDay())
+           ->where('id', '>', 55);
+        })->get();
+
+    $contacts2 = DB::table('contacts')
+        ->where('id', '>', 55)
+        ->orWhere('created_at', '>', \Carbon\Carbon::now()->subDay())
+        ->get();
+
+    $contacts3 = DB::table('contacts')
+        ->whereBetween('id', [13, 20])
+        ->get();
+
     echo "<pre>";
-    var_dump($usersofType);
+    print_r($contacts3);
+    echo "</pre>";
+
+    echo "<pre>";
+    print_r($contacts2);
+    echo "</pre>";
+
+    echo "<pre>";
+    print_r($contacts);
+    echo "</pre>";
+
+    echo "<pre>";
+    print_r($newContacts);
+    echo "</pre>";
+
+
+    echo "<pre>";
+    print_r($usersofType);
     echo "</pre>";
 });
 
