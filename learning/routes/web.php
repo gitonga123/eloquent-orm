@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//using the fluent builder.
+Route::get('/contact-list', function () {
+    $contact = DB::table('contacts')->get();
+    dd($contact);
+});
