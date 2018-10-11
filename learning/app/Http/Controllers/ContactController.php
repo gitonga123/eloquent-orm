@@ -23,6 +23,8 @@ class ContactController extends Controller
         var_dump($recentEmails);
         echo "</pre>";
 
+
+
     }
 
     /**

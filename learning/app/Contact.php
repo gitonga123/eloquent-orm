@@ -5,6 +5,7 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use PhpParser\Builder;
 
 class Contact extends Model
 {
@@ -25,6 +26,15 @@ class Contact extends Model
     public function scopeStatus($query, $email)
     {
         return $query->where('email', $email);
+    }
+
+    //global scope using closures
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope('active', function (Builder $builder) {
+            $builder->where('create_at', '>', Carbon::now()->subDay());
+        });
     }
 
     //change your primary key
