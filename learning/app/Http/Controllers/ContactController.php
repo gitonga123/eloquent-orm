@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -93,6 +94,25 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contact = Contact::find($id);
+        $contact->delete();
+
+        //or
+
+        Contact::destroy(1);
+        // delete multiple
+
+        Contact::destroy([1, 3, 4,5]);
+
+        //or
+
+        Contact::where('updated_at', '<', Carbon::now()->subYear()->delete());
+    }
+
+    public function listing()
+    {
+        $contact = Contact::firstorCreate(['name' => 'James Controller','email' => 'jamescontroller@doe.com', 'message' => 'qwertyui 345678 345678 lkjnb fghn jkj']);
+
+        dd($contact);
     }
 }

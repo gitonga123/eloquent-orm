@@ -105,3 +105,5 @@ Route::get('/contact-delete/{id}', function ($id) {
 
 Route::resource('contact', 'ContactController');
 
+Route::get('/firstorcreate', 'ContactController@listing');
+
