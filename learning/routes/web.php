@@ -103,3 +103,5 @@ Route::get('/contact-delete/{id}', function ($id) {
     echo $countDeteleted;
 });
 
+Route::resource('contact', 'ContactController');
+
