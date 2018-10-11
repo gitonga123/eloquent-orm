@@ -18,5 +18,5 @@ Route::get('/', function () {
 //using the fluent builder.
 Route::get('/contact-list', function () {
     $contact = DB::table('contacts')->get();
-    dd($contact);
+    var_dump($contact);
 });
