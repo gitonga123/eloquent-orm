@@ -5,8 +5,7 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use PhpParser\Builder;
-
+use Illuminate\Database\Eloquent\Builder;
 class Contact extends Model
 {
     use SoftDeletes;
@@ -33,8 +32,21 @@ class Contact extends Model
     {
         parent::boot();
         static::addGlobalScope('active', function (Builder $builder) {
-            $builder->where('create_at', '>', Carbon::now()->subDay());
+            $builder->where('created_at', '>', Carbon::now()->subDay());
         });
+    }
+
+    //Accessors
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->email;
+    }
+
+    //Mutators
+
+    public function setEmailAttribute($value)
+    {
+        $this->attribute['email'] = $value > 0 ? $value : 0;
     }
 
     //change your primary key
