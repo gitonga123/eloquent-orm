@@ -28,13 +28,13 @@ class Contact extends Model
     }
 
     //global scope using closures
-    protected static function boot()
-    {
-        parent::boot();
-        static::addGlobalScope('active', function (Builder $builder) {
-            $builder->where('created_at', '>', Carbon::now()->subDay());
-        });
-    }
+//    protected static function boot()
+//    {
+//        parent::boot();
+//        static::addGlobalScope('active', function (Builder $builder) {
+//            $builder->where('created_at', '>', Carbon::now()->subDay());
+//        });
+//    }
 
     //Accessors
     public function getFullNameAttribute()
@@ -47,6 +47,11 @@ class Contact extends Model
     public function setEmailAttribute($value)
     {
         $this->attribute['email'] = $value > 0 ? $value : 0;
+    }
+
+    public function phoneNumber()
+    {
+        return $this->hasOne(PhoneNumber::class);
     }
 
     //change your primary key

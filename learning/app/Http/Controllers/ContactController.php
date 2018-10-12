@@ -29,20 +29,21 @@ class ContactController extends Controller
         //create a collection
         $collection = collect([1, 2, 3]);
 
-        //dd($collection);
+        dd($collection);
         //filter out only that are even
         $collectors = $collection->reject(function ($item) {
             return $item % 2 === 0;
         });
 
-        //dd($collectors);
+        dd($collectors);
         // multiply every item on the collection list
         $multiplied = $collection->map(function ($item) {
             return $item * 10;
         });
 
-        //dd($multiplied);
+        dd($multiplied);
 
+        //using filters and map to add values
         $sum = $collection->filter(function ($item) {
             return $item % 2 == 0;
         })->map(function ($item) {
@@ -50,6 +51,12 @@ class ContactController extends Controller
         })->sum();
 
         dd($sum);
+
+        $contactArray = Contact::first()->toArray();
+        $contactJson = Contact::first()->toJson();
+
+        dd($contactArray);
+        dd($contactJson);
 
     }
 
