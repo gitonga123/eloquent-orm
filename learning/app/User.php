@@ -27,8 +27,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function phoneNumber()
+    public function phoneNumbers()
     {
-        return $this->hasMany(PhoneNumber::class, 'user_id');
+        return $this->hasMany(PhoneNumber::class);
+    }
+
+    public function contacts()
+    {
+        return $this->hasManyThrough(PhoneNumber::class, Contact::class);
     }
 }

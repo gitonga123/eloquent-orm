@@ -121,3 +121,9 @@ Route::get('/phone_owners/{id}', function ($id) {
     return $phoneNumbers;
 });
 
+Route::get('/user_phones/{id}', function ($id) {
+    $user = \App\User::findOrFail($id);
+    $userNumber = $user->phoneNumbers;
+    return $userNumber;
+});
+
