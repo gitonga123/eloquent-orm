@@ -20,13 +20,24 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+        'phone_id' => random_int(0, 50)
     ];
 });
 
 $factory->define(App\Contact::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name(),
+        'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'message' => $faker->text()
+        'message' => $faker->text,
+        'phone_id' => random_int(0, 50)
+    ];
+});
+
+$factory->define(App\PhoneNumber::class, function (Faker\Generator $faker) {
+    return [
+        'phone_number' => $faker->phoneNumber,
+        'owner_id' => $faker->randomElement(App\User::all()->pluck('id')->toArray()),
+        'user_id' => $faker->randomElement(App\User::all()->pluck('id')->toArray()),
+        'contact_id' => random_int(0, 50),
     ];
 });

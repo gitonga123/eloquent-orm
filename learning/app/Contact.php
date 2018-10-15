@@ -10,7 +10,6 @@ class Contact extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'contacts';
     protected $fillable = ['name', 'email', 'message'];
     protected $guarded = ['id', 'created_at', 'update_at'];
     protected $dates = ['deleted_at'];
@@ -51,7 +50,7 @@ class Contact extends Model
 
     public function phoneNumber()
     {
-        return $this->hasOne(PhoneNumber::class);
+        return $this->hasOne(PhoneNumber::class, 'contact_id');
     }
 
     //change your primary key

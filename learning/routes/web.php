@@ -109,3 +109,9 @@ Route::get('/firstorcreate', 'ContactController@listing');
 
 Route::get('/soft-deleted', 'ContactController@softDeletes');
 
+Route::get('/phone_owners/{id}', function ($id) {
+    $user = \App\Contact::first();
+    $contactPhone = $user->phoneNumber;
+    return $contactPhone;
+});
+
