@@ -127,3 +127,7 @@ Route::get('/user_phones/{id}', function ($id) {
     return $userNumber;
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
