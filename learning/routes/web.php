@@ -131,3 +131,7 @@ Route::get('/user_phones/{id}', function ($id) {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::group(['middleware' => ['web']], function () {
+    Route::get('login/facebook', 'Auth\LoginController@redirectToFacebook');
+    Route::get('login/facebook/callback', 'Auth\LoginController@getFacebookCallback');
+});

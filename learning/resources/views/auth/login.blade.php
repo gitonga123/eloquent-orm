@@ -54,6 +54,9 @@
                                     Login
                                 </button>
 
+                                <a href="/login/facebook"> <div class="btn btn-md btn-danger"> <i class="fa fa-\
+2 facebook"></i> Login with Facebook </div></a>
+
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     Forgot Your Password?
                                 </a>
