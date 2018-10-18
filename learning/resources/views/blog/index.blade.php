@@ -22,6 +22,8 @@
                         </div>
                     @endforeach
                 @endif
+
+                {!! $posts->render() !!}}
             </div>
         </div>
     </div>
