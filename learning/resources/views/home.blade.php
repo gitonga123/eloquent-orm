@@ -6,7 +6,7 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-primary">
                 <div class="panel-heading">Dashboard</div>
-                <div><img src="/images/chap1-pic24.png" width="100%"/></div>
+                <div><img src="/images/vue.png" width="100%"/></div>
                 <div class="panel-body">
                     <form method="POST" action="{{ url('upload') }}" enctype="multipart/form-data">
                         @foreach ($errors as $error)
