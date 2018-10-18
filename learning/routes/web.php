@@ -135,3 +135,4 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('login/facebook', 'Auth\LoginController@redirectToFacebook');
     Route::get('login/facebook/callback', 'Auth\LoginController@getFacebookCallback');
 });
+Route::post('upload', 'ImagesController@store')->name('upload');
