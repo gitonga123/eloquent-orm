@@ -16,6 +16,7 @@ class ImagesController extends Controller
             $file->move(public_path() . '/images/', $name);
             $imagePath = public_path().'/images/'.$name;
             $image = Image::make($imagePath)->resize(1000, 250)->save();
+            $image->sharpen(15);
             return redirect('/')->with('status', 'Your image has been uploaded successfully');
         }
     }
