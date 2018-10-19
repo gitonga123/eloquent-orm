@@ -137,3 +137,8 @@ Route::group(['middleware' => ['web']], function () {
 });
 Route::post('upload', 'ImagesController@store')->name('upload');
 Route::get('/blog', 'BlogController@index');
+
+Route::get('json', function () {
+    return App\Post::paginate();
+});
+Route::get('json-paginate', 'BlogController@indexPaginate');

@@ -12,6 +12,7 @@
                 @if ($posts->isEmpty())
                     <p class="alert alert-warning"> There is no posts.</p>
                 @else
+                        <p class="alert alert-warning"> {!! $posts->total() !!} Posts</p>
                     @foreach($posts as $post)
                         <div class="panel panel-primary">
                             <div class="panel-heading">{{ $post->title }}</div>
