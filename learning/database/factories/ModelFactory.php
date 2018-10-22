@@ -44,10 +44,17 @@ $factory->define(App\PhoneNumber::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Post::class, function (Faker\Generator $faker) {
     return [
-        'title' => $faker->text(80),
+        'title'  => $faker->text(80),
         'content' => $faker->paragraph(30),
         'slug' => Illuminate\Support\Str::slug($faker->text, '-'),
         'status' => 1,
         'user_id' => $faker->numberBetween($min = 1, $max=5),
+    ];
+});
+
+$factory->define(App\Article::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence,
+        'body' => $faker->paragraph,
     ];
 });
