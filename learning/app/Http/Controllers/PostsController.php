@@ -40,7 +40,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        if (!$request->title || (!$request->content)) {
+        if ((!$request->title) || (!$request->content)) {
             $response = Response::json([
                 'error' => [
                     'message' => 'Please enter all required fields'
@@ -107,7 +107,37 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ((!$request->title) || (!$request->content)) {
+            $response = Response::json([
+                'error' => [
+                    'message' => 'Please enter all the required fields'
+                ]
+            ], 422);
+
+            return $response;
+        }
+
+        $post = Post::find($id);
+        if (!$post) {
+            $response = Response::json([
+                'error' => [
+                    'message' => 'Record Not Found'
+                ]
+            ], 404);
+            return $response;
+        }
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->slug = Str::slug($request->title, '-');
+        $post->save();
+
+        $response = Response::json([
+            'message' => 'The post has been update',
+            'data' => $post
+        ], 200);
+
+        return $response;
+
     }
 
     /**
