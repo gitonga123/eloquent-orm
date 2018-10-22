@@ -49,7 +49,18 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+        if ($post) {
+            $response = Response::json($post, 200);
+        } else {
+            $response = Response::json([
+                'error' => [
+                    'message' => 'This post cannot be found'
+                ]
+            ], 404);
+        }
+
+        return $response;
     }
 
     /**
