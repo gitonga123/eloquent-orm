@@ -168,4 +168,8 @@ class PostsController extends Controller
 
         return $response;
     }
+
+    //CORS - Cross-Origin Resource Sharing - Mechanism that allows moderm
+    // browsers to send and receive restricted data from a domain other than the
+    // one that made the request
 }
