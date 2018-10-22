@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use Illuminate\Support\Str;
 use Response;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 
 class PostsController extends Controller
 {
@@ -38,7 +40,29 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (!$request->title || (!$request->content)) {
+            $response = Response::json([
+                'error' => [
+                    'message' => 'Please enter all required fields'
+                ]
+            ], 422);
+            return $response;
+        }
+
+        $post = new Post(array(
+           'title' => $request->title,
+           'content' => $request->content,
+           'slug' => Str::slug($request->title, '-'),
+            'user_id' => 5,
+        ));
+        $post->save();
+
+        $response = Response::json([
+            'message' => 'The post has been created successfully',
+            'data' => $post,
+        ], 201);
+
+        return $response;
     }
 
     /**
