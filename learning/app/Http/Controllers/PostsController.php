@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
+use Response;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -13,7 +15,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::paginate(10);
+        $response = Response::json($posts, 200);
+        return $response;
     }
 
     /**
