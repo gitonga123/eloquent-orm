@@ -41,14 +41,14 @@ return [
     | All database work in Laravel is done through the PHP PDO facilities
     | so make sure you have the driver for your particular database of
     | choice installed on your machine before you begin development.
-    |
+    | env('DB_DATABASE', database_path('database.sqlite'))
     */
 
     'connections' => [
 
         'sqlite' => [
             'driver' => 'sqlite',
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
+            'database' => ':memory',
             'prefix' => '',
         ],
 
