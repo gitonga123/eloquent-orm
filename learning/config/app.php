@@ -166,6 +166,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
+        Softon\SweetAlert\SweetAlertServiceProvider::class,
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -231,6 +233,8 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'SWAL' => Softon\SweetAlert\Facades\SWAL::class,
+        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
     ],
 
 ];
