@@ -146,5 +146,6 @@ Route::get('json-paginate', 'BlogController@indexPaginate');
 //Routes for the Post API
 Route::group(['prefix' => 'api/v1', 'middleware' => 'api', 'cors'], function () {
     Route::resource('posts', 'PostsController');
+    Route::resource('articles', 'ArticleController');
 });
 
