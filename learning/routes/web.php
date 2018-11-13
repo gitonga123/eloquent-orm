@@ -151,4 +151,5 @@ Route::group(['prefix' => 'api/v1', 'middleware' => 'api', 'cors'], function () 
 //    Route::post('login', 'Auth\LoginController@Login');
 });
 
-
+Route::get('updateProfile', 'ProfileController@index');
+Route::post('updateProfile', 'ProfileController@userProfile');
