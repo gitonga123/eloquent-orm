@@ -29,3 +29,11 @@ $factory->define(App\Task::class, function (Faker\Generator $faker){
         'reminder' => $faker->sentence
     ];
 });
+
+$factory->define(App\Article::class, function (Faker\Generator $faker){
+    return [
+        'title' => $faker->sentence(3),
+        'body' => $faker->paragraph(6),
+        'tags' => join(',', $faker->words(4))
+    ];
+});
