@@ -8,5 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     use ElasticquentTrait;
-    protected $fillable
+    protected $fillable = ['title', 'body', 'tags'];
+    protected $guarded = ['id'];
+    protected $mappingProperties = array(
+        'title' => [
+            'type' => 'text',
+            "analyzer" => "standard",
+        ],
+        'body' => [
+            'type' => 'text',
+            "analyzer" => "standard",
+        ],
+        'tags' => [
+            'type' => 'text',
+            "analyzer" => "standard",
+        ],
+    );
 }
