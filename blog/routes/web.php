@@ -18,3 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/article', function () {
+    \App\Article::createIndex($shards = null, $replicas = null);
+    \App\Article::putMapping($ignoreConflicts = true);
+    \App\Article::addAllToIndex();
+
+    return view('welcome');
+});
