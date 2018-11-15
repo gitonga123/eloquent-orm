@@ -28,7 +28,7 @@ Route::get('/article', function () {
 
 Route::get('/article-search', function() {
    $articles = \App\Article::searchByQuery(['match' => ['title' => 'Dolorem']]);
-   return $articles;
+   return $articles->chunk(2);
 });
 Route::get('/article-collection', function () {
     $articles = \App\Article::searchByQuery(['match' => ['title' => 'Dolorem']]);
