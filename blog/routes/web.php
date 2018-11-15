@@ -30,3 +30,12 @@ Route::get('/article-search', function() {
    $articles = \App\Article::searchByQuery(['match' => ['title' => 'Dolorem']]);
    return $articles;
 });
+Route::get('/article-collection', function () {
+    $articles = \App\Article::searchByQuery(['match' => ['title' => 'Dolorem']]);
+    echo $articles->totalHits();
+    var_dump($articles->getShards());
+    echo $articles->maxScore();
+    echo $articles->timedOut();
+    echo $articles->took();
+    var_dump($articles->getAggregations());
+});
