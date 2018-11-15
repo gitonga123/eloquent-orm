@@ -25,3 +25,8 @@ Route::get('/article', function () {
 
     return view('welcome');
 });
+
+Route::get('/article-search', function() {
+   $articles = \App\Article::searchByQuery(['match' => ['title' => 'Dolorem']]);
+   return $articles;
+});
