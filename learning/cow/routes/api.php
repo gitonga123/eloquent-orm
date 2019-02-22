@@ -25,5 +25,7 @@ Route::group(
     ['middleware' => 'auth:api'],
     function () {
         Route::post('details', 'API\UserController@details');
+        Route::apiResource('books', 'API\BookController');
+        Route::post('books/{book}/ratings', 'API\RatingController@store');
     }
 );
