@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
+use App\Book;
+use App\Rating;
+use App\Http\Resources\RatingResource;
 
 class RatingsController extends Controller
 {
@@ -24,7 +27,15 @@ class RatingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rating = Rating::firstOrCreate(
+            [
+                'user_id' => $request->user()->id,
+                'book_id' => $book->id,
+            ],
+            ['rating' => $request->rating]
+        );
+
+        return new RatingResource($rating);
     }
 
     /**
